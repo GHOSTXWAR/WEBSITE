@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Master Jumper</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+             <!-- background game music -->
+      <audio id="backgroundMusic" loop  src="Assets/Music/BG_Sound.mp3"></audio>
+
+<!-- sound affects for jumping and dying -->
+     <audio id="jumpSound" src="Assets/Sounds/Jump.mp3"></audio>
+<audio id="deathSound" src="Assets/Sounds/Death.mp3"></audio>
+
+      <!-- startmenu -->
+<div  id="startMenu">
+       <div id="welcomeText">Master  Jumper</div>
+
+   <!-- volume slider control for music and sound affects -->
+         <div id="volumeControlContainer">
+      <label for="volumeSlider"> Volume</label>
+      <input type="range" id="volumeSlider"  min="0" max="1"  step="0.01" value="0.1" />
+    </div>
+
+    <!-- button to start the game -->
+    <button id="startBtn">Start Game </button>
+   <button id="backToPortfolio1" class="game-button">Back To Portfolio</button>
+
+
+    </div>
+
+      <!-- main gameplay area -->
+  <div id="gameContainer" class ="blurred">
+
+    <!-- Animated background-->
+    <video autoplay muted loop>
+      <source src="Assets/Video/desert_1.mp4" type="video/mp4" />
+    </video>
+
+ <!--Ground image - ground -->
+    <div id="ground"></div>
+
+            <!-- character/player -->
+      <div  id="character"></div>
+
+    <!-- game container hold moving obsticals within game -->
+
+      <div id="obstacleContainer"></div>
+
+    <!-- score and highscore text display -->
+    <div id="scoreContainer">
+      <div id="highScore">High Score: 0</div>
+    <div id="score">Score:  0</div>
+     </div>
+  </div>
+
+<!-- controls info/game instruction - shown below game -->
+  <div id="controlsInfo"></div>
+<div id="tutorialInfo"></div>
+<div id="controlsInfo"></div>
+  
+    <!-- Game over text shown when player dies -->
+  <div id="gameOver">
+<h2>Game Over</h2>
+    
+  <!-- Retry/restart button -->
+    <button id="retryBtn">Retry</button>
+    
+   <!-- main menu return button -->
+        <button id="backToStartBtn">Back to Start Menu</button>
+<button id="backToPortfolio2" class="game-button">Back To Portfolio</button>
+
+
+  </div>
+  
+  <!-- link to javascript -->
+  <script src="script.js"></script>
+</body>
+</html>

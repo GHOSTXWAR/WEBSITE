@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Cover Art</title>
+  <style>
+   
+    body {
+        background-color: #00aa9c;
+      color: #ffd82c;
+       font-family: Arial, sans-serif;
+      margin: 0;
+        padding: 4rem 1rem 120px;
+    display: flex;
+      flex-direction: column;
+       align-items: center;
+      text-align: center;
+   min-height: 100vh;
+        position: relative;
+      overflow-x: hidden;
+    }
+
+    /* heading style */
+    h1 {
+       font-size: 4rem;
+    margin-bottom: 3rem;
+      position: relative;
+   z-index: 2;
+    }
+
+    /*image box container  */
+    .image-box {
+        display: flex;
+    flex-direction: column;
+      align-items: center;
+       max-width: 480px; 
+     width: 90vw;
+      margin-bottom: 4rem;
+       position: relative;
+      z-index: 2;
+    }
+
+    /* styling for image boxes */
+    .image-box img {
+  width: 100%;
+     height: auto;
+       object-fit: contain;
+     border: 4px solid #ffd82c;
+  border-radius: 20px;
+      box-shadow: 0 0 12px #ffd82c;
+       background-color: white;
+    }
+
+    /* labes above images / and styling */
+    .label {
+      font-size: 2rem;
+    font-weight: bold;
+      margin-bottom: 1rem;
+       position: relative;
+      z-index: 2;
+    }
+
+    /*back button styling */
+    .back-button {
+        position: fixed;
+     bottom: 20px;
+       left: 50%;
+   transform: translateX(-50%);
+     background-color: #ffd82c;
+      color: #00aa9c;
+        border: none;
+    padding: 0.6rem 1.4rem; 
+      font-size: 1.1rem; 
+       font-weight: bold;
+      border-radius: 10px;
+     cursor: pointer;
+      box-shadow: 0 0 8px #ffd82c;
+       text-decoration: none;
+      z-index: 1000;
+        transition: background-color 0.3s ease;
+    }
+
+    /* back button hover color */
+    .back-button:hover {
+   background-color: #e6c729;
+    }
+
+    /* responsive styles for small screens */
+    @media (max-width: 500px) {
+      .image-box {
+         max-width: 100%;
+      }
+      .label {
+          font-size: 1.6rem;
+      }
+      .back-button {
+          font-size: 1rem;
+        padding: 0.5rem 1.2rem;
+      }
+    }
+
+    /* glow box float container */
+    .glow-float-container {
+      position: absolute;
+        top: 0;
+      left: 0;
+        width: 100%;
+     height: 100%;
+      pointer-events: none; 
+        overflow: hidden;
+      z-index: 1; 
+    }
+
+    /* floating square styling */
+    .glow-square {
+        position: absolute;
+       width: 40px;
+    height: 40px;
+      background: radial-gradient(circle at center, rgba(255, 255, 255, 0.7), transparent 70%);
+    border: 2px solid #ffffff;
+      border-radius: 6px;
+       box-shadow:
+        0 0 15px 5px #ffffff,
+        0 0 25px 10px #ffffff,
+        inset 0 0 10px 2px #fff05c;
+      opacity: 1;
+  pointer-events: none;
+       mix-blend-mode: screen;
+    will-change: transform; 
+    }
+  </style>
+</head>
+<body>
+  <h1>Cover Art</h1>
+
+  <!-- container for squares -->
+    <div class="glow-float-container"></div>
+
+  <!--  cover art image -->
+  <div class="image-box">
+   <div class="label">Cover Art</div>
+    <img src="Assets/ART screenshots/Cover art/The LAST SALVATION FINAL copy 2.jpg" alt="Cover Art" />
+  </div>
+
+  <!-- back button -->
+  <a href="art.html" class="back-button">Back to Portfolio</a>
+
+  <script>
+    
+    document.addEventListener('DOMContentLoaded', () => {
+        const container = document.querySelector('.glow-float-container'); 
+    const squares = []; 
+      const squareCount = 10; 
+
+      // number gen for squares
+      function randRange(min, max) {
+         return Math.random() * (max - min) + min;
+      }
+
+      // creates random sqaure
+         function createSquare() {
+      const sq = document.createElement('div');
+        sq.classList.add('glow-square');
+
+        
+          const vw = window.innerWidth;
+        const vh = document.body.scrollHeight;
+
+        // selects edge of screen-randomly
+     const edge = Math.floor(Math.random() * 4);
+        let x, y, vx, vy;
+
+        // speed of squares
+        switch (edge) {
+            case 0: 
+            
+            x = randRange(0, vw);
+             y = -40;
+          vx = randRange(-1.5, 1.5);
+            vy = randRange(0.5, 1.5);
+            break;
+          case 1: 
+              x = vw + 40;
+            y = randRange(0, vh);
+             vx = randRange(-1.5, -0.5);
+            vy = randRange(-1, 1);
+            break;
+          case 2: 
+           
+          x = randRange(0, vw);
+            y = vh + 40;
+           vx = randRange(-1.5, 1.5);
+        vy = randRange(-1.5, -0.5);
+            break;
+          case 3:
+            
+             x = -40;
+             y = randRange(0, vh);
+             vx = randRange(0.5, 1.5);
+            vy = randRange(-1, 1);
+            break;
+        }
+
+        
+        container.appendChild(sq);
+
+        
+        return { element: sq, x, y, vx, vy };
+      }
+
+      // creates spesfic number of sqaures and spawns them in
+      for (let i = 0; i < squareCount; i++) {
+          squares.push(createSquare());
+      }
+
+      // animation loop
+      function animate() {
+          const vw = window.innerWidth;
+        const vh = document.body.scrollHeight;
+
+        // Updates squares velocity
+        for (const sq of squares) {
+            sq.x += sq.vx;
+          sq.y += sq.vy;
+
+          // bounce when hitting right and left edges-horizontally
+        if (sq.x < -40) sq.vx *= -1;
+            if (sq.x > vw - 10) sq.vx *= -1;
+
+          // bounce when hiting top and bottom edges-vertically
+           if (sq.y < -40) sq.vy *= -1;
+          if (sq.y > vh - 10) sq.vy *= -1;
+
+          
+          sq.element.style.transform = `translate(${sq.x}px, ${sq.y}px)`;
+        }
+
+        // loops animation by requesting a frame
+        requestAnimationFrame(animate);
+      }
+
+      
+      animate();
+
+      
+      window.addEventListener('resize', () => {
+          const vw = window.innerWidth;
+       const vh = document.body.scrollHeight;
+          squares.forEach(sq => {
+        if (sq.x > vw) sq.x = vw - 10;
+          if (sq.y > vh) sq.y = vh - 10;
+        });
+      });
+    });
+  </script>
+</body>
+</html>

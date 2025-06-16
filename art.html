@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Art Preview Buttons with Back</title>
+
+  <style>
+    html, body {
+      margin: 0;
+       padding: 0;
+      height: 100%;
+    background-color: #00aa9c; 
+      font-family: Arial, sans-serif;
+       color: #ffd82c; 
+    overflow-x: hidden;
+    }
+
+    body {
+      display: flex;
+       flex-direction: column;
+      align-items: center;
+     height: 100vh;
+      position: relative;
+       z-index: 1;
+    }
+
+    /* title */
+    .section-title {
+      margin-top: 40px;
+    font-size: 4rem;
+    text-align: center;
+      font-weight: bold;
+    }
+
+    /* containter-art  */
+    #art {
+      flex-grow: 1;
+    display: flex;
+      justify-content: center;
+     align-items: flex-start;
+      width: 100%;
+       padding-top: 70px;
+    }
+
+    /* preview button-container */
+    .art-buttons-container {
+      display: grid;
+     grid-template-columns: repeat(3, 160px);
+      grid-template-rows: repeat(3, 90px);
+    gap: 35px 100px;
+      justify-content: center;
+       justify-items: center;
+    }
+
+    /* container for button labels */
+    .button-wrapper {
+    display: flex;
+      flex-direction: column;
+     align-items: center;
+    }
+
+    /* lables for the buttons */
+    .btn-label {
+      margin-bottom: 10px;
+     font-size: 1.3rem;
+      font-weight: 600;
+       user-select: none;
+      white-space: pre-line; 
+    text-align: center;
+    }
+
+    /* butron visual input */
+    .art-preview-btn {
+      background-color: #00aa9c;
+        color: #ffd82c;
+      border: 2px solid #ffd82c;
+   border-radius: 12px;
+       padding: 15px 30px;
+      font-size: 1.4rem;
+     cursor: pointer;
+      transition: background-color 0.3s ease, color 0.3s ease;
+       width: 160px;
+      text-align: center;
+    user-select: none;
+    }
+
+    /* button hover and click color */
+    .art-preview-btn:hover,
+     .art-preview-btn.active {
+      background-color: #1c6345;
+    color: #ffd82c;
+    }
+
+    /* postion for buttons */
+    .btn1 { grid-column: 1; grid-row: 1; }
+    .btn2 { grid-column: 3; grid-row: 1; }
+    .btn3 { grid-column: 2; grid-row: 2; }
+    .btn4 { grid-column: 1; grid-row: 3; }
+    .btn5 { grid-column: 3; grid-row: 3; }
+
+    /* back button visual style*/
+    .back-button {
+      margin-top: 4rem;
+       background-color: #ffd82c;
+      color: #00aa9c;
+    border: none;
+      padding: 0.75rem 2.5rem;
+       font-size: 1.3rem;
+      font-weight: bold;
+   border-radius: 10px;
+      cursor: pointer;
+      box-shadow: 0 0 8px #ffd82c;
+      transition: background-color 0.3s ease;
+ text-decoration: none;
+      align-self: center;
+        display: inline-block;
+      z-index: 2;
+    }
+
+    .back-button:hover {
+      background-color: #e6c729;
+    }
+
+    /* container for - animtion blocks*/
+    .glow-float-container {
+      position: fixed;
+     top: 0;
+      left: 0;
+       width: 100vw;
+      height: 100vh;
+     pointer-events: none;
+      overflow: hidden;
+       z-index: 0;
+    }
+
+    /*  glowing circle style */
+    .glow-block {
+      position: absolute;
+    width: 50px;
+      height: 50px;
+  background: radial-gradient(circle, #ffffff 0%, transparent 70%);
+      filter: drop-shadow(0 0 8px #ffffff);
+        border-radius: 50%;
+      opacity: 1;
+       will-change: transform, top, left;
+    }
+  </style>
+</head>
+<body>
+
+  <!--glow circle -cointater-->
+    <div class="glow-float-container"></div>
+
+  <!-- Title -->
+    <h2 class="section-title">Art Gallery</h2>
+
+  <!-- Buttons  -->
+     <section id="art">
+    <div class="art-buttons-container">
+      <!-- button 1 -->
+         <div class="button-wrapper btn1">
+    <div class="btn-label">APE 2D GAME</div>
+        <button class="art-preview-btn" onclick="location.href='ape-2d-game.html'">Preview</button>
+      </div>
+      <!-- button 2 -->
+    <div class="button-wrapper btn2">
+         <div class="btn-label">RPG GAME</div>
+     <button class="art-preview-btn" onclick="location.href='rpg-game.html'">Preview</button>
+      </div>
+      <!-- button 3 -->
+      <div class="button-wrapper btn3">
+   <div class="btn-label">COVER ART</div>
+         <button class="art-preview-btn" onclick="location.href='cover-art.html'">Preview</button>
+      </div>
+      <!-- button 4 -->
+      <div class="button-wrapper btn4">
+   <div class="btn-label">SCRIPTING&#10;ART</div>
+      <button class="art-preview-btn" onclick="location.href='scripting-art.html'">Preview</button>
+      </div>
+      <!-- button 5 -->
+      <div class="button-wrapper btn5">
+  <div class="btn-label">SLIME 2D&#10;GAME</div>
+         <button class="art-preview-btn" onclick="location.href='slime-2d-game.html'">Preview</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- back button -->
+  <a href="index.html" class="back-button">Back to Portfolio</a>
+
+  <!-- js- for animated blocks/circles -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const glowContainer = document.querySelector('.glow-float-container');
+   if (!glowContainer) {
+        console.error('No glow container found!');
+         return;
+      }
+
+      const blocks = [];
+
+      // glow blocks/circle amount
+     for (let i = 0; i < 10; i++) {
+        const block = document.createElement('div');
+   block.classList.add('glow-block');
+
+        // random position-spawn
+        block.style.top = Math.random() * 90 + 5 + 'vh';
+          block.style.left = Math.random() * 90 + 5 + 'vw';
+
+        glowContainer.appendChild(block);
+
+        // track position and direction-where they float
+       blocks.push({
+            element: block,
+          x: parseFloat(block.style.left),
+      y: parseFloat(block.style.top),
+          directionX: Math.random() > 0.5 ? 1 : -1,
+            directionY: Math.random() > 0.5 ? 1 : -1,
+          speedX: (Math.random() * 0.1) + 0.02,
+       speedY: (Math.random() * 0.1) + 0.02,
+        });
+      }
+
+      // animated-loop
+      function animate() {
+          blocks.forEach(block => {
+       block.x += block.directionX * block.speedX;
+     block.y += block.directionY * block.speedY;
+
+          // bounce of edges
+            if (block.x < 0 || block.x > 95) block.directionX *= -1;
+          if (block.y < 0 || block.y > 95) block.directionY *= -1;
+
+          block.element.style.left = block.x + 'vw';
+       block.element.style.top = block.y + 'vh';
+        });
+
+         requestAnimationFrame(animate);
+      }
+
+      animate();
+    });
+  </script>
+
+</body>
+</html>

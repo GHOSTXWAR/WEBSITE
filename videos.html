@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Videos Showcase</title>
+  <style>
+
+    body {
+   background-color: #00aa9c;
+       color: #ffd82c;
+      font-family: Arial, sans-serif;
+         margin: 0;
+      min-height: 100vh;
+        display: flex;
+      flex-direction: column;
+     justify-content: space-between;
+  align-items: center;
+         padding: 2rem 1rem;
+      position: relative;
+   overflow-x: hidden;
+    }
+
+
+    header {
+      width: 100%;
+     text-align: center;
+        margin-bottom: 3rem;
+  position: relative;
+       z-index: 2;
+    }
+
+    header h1 {
+        font-size: 4rem;
+      margin: 0;
+    }
+
+    /* grid layout for video- */
+    .video-grid {
+        display: grid;
+      grid-template-columns: repeat(2, 550px);
+       grid-template-rows: repeat(2, 360px);
+    gap: 2rem 3rem;
+      width: 100%;
+          max-width: 900px;
+     margin-bottom: 4rem;
+      justify-content: center;
+     position: relative;
+       z-index: 2;
+    }
+
+    /*  small screens responsive layout */
+    @media (max-width: 1150px) {
+      .video-grid {
+          grid-template-columns: 1fr;
+        grid-template-rows: auto;
+         gap: 2rem;
+      }
+    }
+
+    /* video container visual styling*/
+    .video-box {
+      border: 4px solid #ffd82c;
+        border-radius: 20px;
+      background-color: #00aa9c;
+    display: flex;
+      justify-content: center;
+        align-items: center;
+      box-shadow: 0 0 15px #ffd82c;
+    cursor: pointer;
+      user-select: none;
+  transition: box-shadow 0.3s ease;
+      overflow: hidden;
+    }
+
+    .video-box:hover {
+      box-shadow: 0 0 30px #ffd82c;
+    }
+
+    /* video Styling */
+    .video-box video {
+       width: 100%;
+     height: 100%;
+        object-fit: cover;
+     border-radius: 16px;
+    }
+
+    /* back button styling */
+    .back-button {
+       position: fixed;
+     bottom: 20px;
+        left: 50%;
+      transform: translateX(-50%);
+     background-color: #ffd82c;
+      color: #00aa9c;
+   font-weight: bold;
+      font-size: 1.3rem;
+        padding: 0.75rem 2.5rem;
+      border: none;
+    border-radius: 10px;
+  cursor: pointer;
+       text-decoration: none;
+      box-shadow: 0 0 8px #ffd82c;
+    transition: background-color 0.3s ease;
+      user-select: none;
+      white-space: nowrap;
+      z-index: 1000;
+    }
+
+    .back-button:hover {
+     background-color: #e6c729;
+      color: #00745c;
+    }
+
+    /* container for glow float */
+    .glow-float-container {
+       position: absolute;
+      top: 0;
+     left: 0;
+      width: 100%;
+       height: 100%;
+     pointer-events: none;
+      overflow: hidden;
+        z-index: 1;
+    }
+
+    /* animated square glow/visual style */
+    .glow-square {
+   position: absolute;
+      width: 40px;
+  height: 40px;
+      background: radial-gradient(circle at center, rgba(255, 255, 255, 0.7), transparent 70%);
+     border: 2px solid #ffffff;
+      border-radius: 6px;
+    box-shadow:
+        0 0 15px 5px #ffffff,
+        0 0 25px 10px #ffffff,
+        inset 0 0 10px 2px #fff05c;
+        opacity: 1;
+      pointer-events: none;
+       mix-blend-mode: screen;
+    will-change: transform;
+    }
+  </style>
+</head>
+<body>
+  <!-- title -->
+  <header>
+     <h1>Video Game Showcase</h1>
+  </header>
+
+  <!-- video section -->
+  <main>
+    <div class="video-grid">
+    <!-- video 1 -->
+      <div class="video-box">
+     <video controls>
+         <source src="Assets/VIDEO GAMES VIDEOS/Videos/FPS GAME-3D.mp4" type="video/mp4" />
+        </video>
+      </div>
+
+      <!-- video 2 -->
+      <div class="video-box">
+        <video controls>
+   <source src="Assets/VIDEO GAMES VIDEOS/Videos/Spooky game-2D.mp4" type="video/mp4" />
+        </video>
+      </div>
+
+      <!-- video 3 -->
+      <div class="video-box">
+     <video controls>
+        <source src="Assets/VIDEO GAMES VIDEOS/Videos/BOOKCASE GAME-2D.mp4" type="video/mp4" />
+        </video>
+      </div>
+
+      <!-- video 4 -->
+      <div class="video-box">
+          <video controls>
+       <source src="Assets/VIDEO GAMES VIDEOS/Videos/SPACE GAME-2D.mp4" type="video/mp4" />
+        </video>
+      </div>
+    </div>
+  </main>
+
+  <!-- back button -->
+  <a href="index.html" class="back-button">Back to Portfolio</a>
+
+  <!-- floating squares -->
+  <div class="glow-float-container"></div>
+
+  <!-- floating glow square  animation   script -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const container = document.querySelector('.glow-float-container');
+         const squares = [];
+  const squareCount = 10;
+
+      // generation -
+      function randRange(min, max) {
+   return Math.random() * (max - min) + min;
+      }
+
+      // spawner/creates squares
+   function createSquare() {
+        const sq = document.createElement('div');
+    sq.classList.add('glow-square');
+
+        const vw = window.innerWidth;
+          const vh = document.body.scrollHeight;
+
+        const edge = Math.floor(Math.random() * 4); 
+       let x, y, vx, vy;
+
+        switch (edge) {
+          case 0: 
+              x = randRange(0, vw);
+            y = -40;
+        vx = randRange(-1.5, 1.5);
+             vy = randRange(0.5, 1.5);
+            break;
+          case 1: 
+        x = vw + 40;
+             y = randRange(0, vh);
+          vx = randRange(-1.5, -0.5);
+            vy = randRange(-1, 1);
+            break;
+          case 2: 
+            x = randRange(0, vw);
+             y = vh + 40;
+             vx = randRange(-1.5, 1.5);
+            vy = randRange(-1.5, -0.5);
+            break;
+          case 3: 
+           x = -40;
+            y = randRange(0, vh);
+             vx = randRange(0.5, 1.5);
+             vy = randRange(-1, 1);
+            break;
+        }
+
+        container.appendChild(sq);
+         return { element: sq, x, y, vx, vy };
+      }
+
+      // creates multiple glow squares
+      for (let i = 0; i < squareCount; i++) {
+     squares.push(createSquare());
+      }
+
+      // animates square movement
+      function animate() {
+          const vw = window.innerWidth;
+        const vh = document.body.scrollHeight;
+
+        for (const sq of squares) {
+        sq.x += sq.vx;
+          sq.y += sq.vy;
+
+          //  reverses the direction when blocks hit the edge
+            if (sq.x < -40) sq.vx *= -1;
+        if (sq.x > vw - 10) sq.vx *= -1;
+          if (sq.y < -40) sq.vy *= -1;
+            if (sq.y > vh - 10) sq.vy *= -1;
+
+          sq.element.style.transform = `translate(${sq.x}px, ${sq.y}px)`;
+        }
+
+        requestAnimationFrame(animate);
+      }
+
+      animate();
+
+      //  updates the postion when the window is resized
+      window.addEventListener('resize', () => {
+        const vw = window.innerWidth;
+    const vh = document.body.scrollHeight;
+        squares.forEach(sq => {
+            if (sq.x > vw) sq.x = vw - 10;
+          if (sq.y > vh) sq.y = vh - 10;
+        });
+      });
+    });
+  </script>
+</body>
+</html>

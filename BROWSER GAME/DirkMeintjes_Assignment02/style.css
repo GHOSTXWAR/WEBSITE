@@ -1,0 +1,309 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Background image outside of the black border */
+body {
+    background-image: url('Assets/Images/redsky.png');
+  background-size: cover;
+    background-position: center;
+    height: 100vh;
+      display: flex;
+    justify-content: center;
+  align-items: center;
+     position: relative;
+}
+
+/* start menu container */
+#startMenu {
+     position: absolute;
+   z-index: 10;
+      text-align: center;
+}
+
+/* Game title- master jumper */
+#welcomeText {
+     font-size: 30px;
+      color: black;
+     margin-bottom: 20px;
+}
+
+/* Button to start game */
+#startBtn {
+  padding: 10px 20px;
+    font-size: 16px;
+  background-color: #c77700;
+   color: white;
+    border: none;
+  cursor: pointer;
+}
+
+/* button hover - changes button collor when hovering over button */
+#startBtn:hover {
+ background-color: #dbac11;
+}
+
+/* container for volume slider  */
+#volumeControlContainer {
+     margin-bottom: 20px;
+}
+
+/* volume slide bar*/
+#volumeSlider {
+    width: 200px;
+   margin-top: 10px;
+}
+
+/* slidebar - text - volume */
+#volumeControlContainer label {
+  font-size: 16px;
+   color: black;
+  margin-right: 10px;
+}
+
+/* Black border- game is in side of it */
+#gameContainer {
+ display: block;
+  width: 600px;
+height: 280px;
+ position: relative;
+  border: 2px solid black;
+   overflow: hidden;
+}
+
+/* Background video- in black border */
+#gameContainer video {
+    position: absolute;
+     top: 0;
+    left: 0;
+     width: 100%;
+    height: 100%;
+  object-fit: cover;
+    z-index: -2;
+}
+
+/* Ground for game */
+#ground {
+    position: absolute;
+   bottom: 0;
+      left: 0;
+    width: 100%;
+   height: 50px;
+    background-image: url('Assets/Images/ground.png');
+  background-repeat: repeat-x;
+     background-size: contain;
+ z-index: 0;
+}
+
+/* player/character and run animation*/
+#character {
+    width: 32px;
+     height: 32px;
+  position: absolute;
+     bottom: 50px;
+    left: 10px;
+  background-repeat: no-repeat;
+    background-position: 0 0;
+     background-image: url('Assets/Images/Run (32x32).png');
+ z-index: 2;
+}
+
+/* character running animation */
+.animateRun {
+    background-image: url('Assets/Images/Run (32x32).png');
+     animation: run 1s steps(12) infinite;
+}
+
+/* running animation frames */
+@keyframes run {
+  from { background-position: 0 0; }
+ to { background-position: -384px 0; }
+}
+
+/* jumping anitmation for character */
+.animateJump {
+ background-image: url('Assets/Images/Jump (32x32).png');
+  animation: jumpFrames 0.8s steps(6) forwards, jumpMotion 0.8s ease-in-out forwards;
+}
+
+/*  jumping animation frames */
+@keyframes jumpFrames {
+    from { background-position: 0 0; }
+    to { background-position: -192px 0; }
+}
+
+/* vertical jump movement */
+@keyframes jumpMotion {
+    0% { bottom: 50px; }
+    40% { bottom: 120px; }
+    60% { bottom: 120px; }
+    100% { bottom: 50px; }
+}
+
+/* obstical container hold all obcticals */
+#obstacleContainer {
+    position: absolute;
+     bottom: 0;
+    left: 0;
+   width: 100%;
+    height: 100%;
+  pointer-events: none;
+     z-index: 1;
+}
+
+/* obstacle base styles */
+.obstacle {
+     position: absolute;
+    background-size: contain;
+   background-repeat: no-repeat;
+     will-change: transform;
+   pointer-events: none;
+     width: 64px;
+  height: 64px;
+}
+
+/* score and highscore display container */
+#scoreContainer {
+    position: absolute;
+     top: 10px;
+   left: 10px;
+  display: flex;
+   flex-direction: column;
+   z-index: 5;
+}
+
+/*  highscore and score text */
+#score, #highScore {
+    font-size: 20px;
+     color: black;
+}
+
+/* Game over container  */
+#gameOver {
+    position: absolute;
+     top: 50%;
+    left: 50%;
+   transform: translate(-50%, -50%);
+     display: none;
+  text-align: center;
+    z-index: 20;
+}
+
+/* retry and back to start menu button */
+#retryBtn,
+#backToStartBtn {
+    padding: 10px 20px;
+     font-size: 16px;
+  background-color: #c77700;
+     color: white;
+    border: none;
+  cursor:  pointer;
+    margin-top: 10px;
+}
+
+/*  button hover - changes button collor when hovering over button  */
+#retryBtn:hover,
+#backToStartBtn:hover {
+    background-color: #dbac11;
+}
+
+/* ensures that the buttons are centerd */
+#gameOver button {
+  display: block;
+margin: 10px auto;
+}
+
+/* blurr affect aplies before game start */
+.blurred {
+    filter: blur(5px);
+}
+
+/* game container- active */
+#gameContainer.active {
+    display: block;
+   filter: none;
+}
+
+/* Game instructions - container*/
+#controlsInfo {
+    position: absolute;
+  top: 699px;
+    left: 50%;
+     transform: translateX(-50%);
+   width: 600px;
+    font-size: 18px;
+   text-align: center;
+      color: black;
+     font-weight: bold;
+  white-space: normal;
+    z-index: 1000;
+}
+
+/*tile for controls labled- Controls */
+#controlsInfo::before {
+    content: "CONTROLS";
+     display: block;
+    font-weight: bold;
+   font-size: 28px;
+}
+
+/* Game controls instruction text */
+#controlsInfo::after {
+  content: "SPACEBAR = JUMP";
+     display: block;
+   font-size: 22px;
+ margin-top: 6px;
+}
+
+
+/* Tutorial Info - container */
+#tutorialInfo {
+  position: absolute;
+    top: 630px; /* adjust this to stack above controlsInfo */
+  left: 50%;
+transform: translateX(-50%);
+  width: 600px;
+    font-size: 18px;
+  text-align: center;
+ color: black;
+  font-weight: bold;
+ white-space: normal;
+  z-index: 1000;
+}
+
+/* Title - TUTORIAL */
+#tutorialInfo::before {
+content: "TUTORIAL";
+  display: block;
+   font-weight: bold;
+ font-size: 28px;
+}
+
+/* Tutorial instruction text */
+#tutorialInfo::after {
+    content: "Jump over objects to gather points";
+  display: block;
+font-size: 22px;
+  margin-top: 6px;
+}
+
+
+.game-button {
+  background-color: #c77700;  
+  border: none;
+  color: white;
+  padding: 12px 24px;
+  text-align: center;
+  font-size: 16px;
+  cursor: pointer;
+  margin: 10px auto;   
+  display: block;
+  width: 200px;        
+  border-radius: 0;    
+}
+
+.game-button:hover {
+  background-color: #dbac11;
+}

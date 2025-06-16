@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>APE 2D GAME</title>
+  <style>
+    
+    body {
+      background-color: #00aa9c;
+         color: #ffd82c;
+      font-family: Arial, sans-serif;
+    margin: 0;
+      padding: 4rem 1rem 120px;
+ display: flex;
+      flex-direction: column;
+   align-items: center;
+      text-align: center;
+        min-height: 100vh;
+    position: relative;
+      overflow-x: hidden;
+    }
+
+    /* heading styling*/
+    h1 {
+      font-size: 4rem;
+  margin-bottom: 3rem;
+     z-index: 2;
+       position: relative;
+    }
+
+    /* loyout container */
+    .layout {
+  display: flex;
+    flex-direction: column;
+      align-items: center;
+     gap: 4rem;
+      width: 100%;
+   max-width: 1200px;
+      position: relative;
+        z-index: 2;
+    }
+
+    /* row container */
+    .row {
+      display: flex;
+     justify-content: center;
+        gap: 4rem;
+      flex-wrap: wrap;
+   align-items: flex-start;
+    }
+
+    /* image container */
+    .image-box {
+       display: flex;
+      flex-direction: column;
+      align-items: center;
+     width: 90vw;
+        max-width: 400px;
+    }
+
+    /*  max width for spesfic images*/
+    .background-box {
+    max-width: 600px;
+    }
+    .banna-box {
+      max-width: 480px;
+    }
+    .stomp-box {
+       max-width: 400px;
+    }
+
+    /* image box styling*/
+    .image-box img {
+      width: 100%;
+   height: auto;
+      object-fit: contain;
+      border: 4px solid #ffd82c;
+        border-radius: 20px;
+     box-shadow: 0 0 12px #ffd82c;
+      background-color: white;
+    }
+
+    /*  styling for labels */
+    .label {
+       font-size: 1.6rem;
+  font-weight: bold;
+     margin-bottom: 0.5rem;
+    }
+
+    
+    .middle-box {
+      margin-top: -2rem;
+       margin-bottom: -2rem;
+    }
+
+    /*  back button styling*/
+    .back-button {
+      position: fixed;
+    bottom: 20px;
+      left: 50%;
+  transform: translateX(-50%);
+      background-color: #ffd82c;
+        color: #00aa9c;
+      border: none;
+    padding: 0.6rem 1.4rem;
+      font-size: 1.1rem;
+        font-weight: bold;
+      border-radius: 10px;
+    cursor: pointer;
+      box-shadow: 0 0 8px #ffd82c;
+   text-decoration: none;
+      z-index: 1000;
+       transition: background-color 0.3s ease;
+    }
+
+    /*  back button hover color  */
+    .back-button:hover {
+    background-color: #e6c729;
+    }
+
+    /* responsive adjustments  */
+    @media (max-width: 1300px) {
+      .row {
+        flex-direction: column;
+         align-items: center;
+        gap: 2rem;
+      }
+      .middle-box {
+      margin: 0;
+      }
+    }
+
+    @media (max-width: 500px) {
+      .image-box {
+        max-width: 100%;
+      }
+      .label {
+        font-size: 1.4rem;
+      }
+      .back-button {
+      font-size: 1rem;
+        padding: 0.5rem 1.2rem;
+      }
+    }
+
+    /* container for floating shapes*/
+    .glow-float-container {
+      position: fixed;
+    top: 0;
+      left: 0;
+       width: 100%;
+     height: 100vh; 
+      pointer-events: none; 
+     overflow: hidden;
+      z-index: 1;    
+    }
+
+    /* floating shapes styling*/
+    .glow-block {
+        position: absolute;
+      width: 0;
+    height: 0;
+      border-left: 20px solid transparent;
+        border-right: 20px solid transparent;
+      border-bottom: 35px solid white;
+     filter:
+        drop-shadow(0 0 6px white)
+        drop-shadow(0 0 12px white);
+        opacity: 1;
+      will-change: transform, top, left; 
+    }
+  </style>
+</head>
+<body>
+   <!-- title -->
+  <h1>APE 2D GAME</h1>
+
+  <!-- container for floating glow effect shapes -->
+<div class="glow-float-container"></div>
+
+  <!-- layout container -->
+  <div class="layout">
+      <div class="row">
+      <!-- image box for Back Side Monkey -->
+      <div class="image-box">
+    <div class="label">Back Side Monkey</div>
+        <img src="Assets/ART screenshots/Ape 2d game/back side monkey.png" alt="Back Side Monkey" />
+      </div>
+
+      <!-- image box for Front View Monkey -->
+      <div class="image-box">
+    <div class="label">Front View Monkey</div>
+        <img src="Assets/ART screenshots/Ape 2d game/colour ape.png" alt="Front View Monkey" />
+      </div>
+
+      <!-- image box for Background -->
+      <div class="image-box background-box">
+    <div class="label">Background</div>
+        <img src="Assets/ART screenshots/Ape 2d game/background.png" alt="Background" />
+      </div>
+    </div>
+
+    <div class="row">
+      <!-- image box for Banana Sprite -->
+      <div class="image-box banna-box">
+    <div class="label">Banana Sprite</div>
+        <img src="Assets/ART screenshots/Ape 2d game/banna colour.png" alt="Banna Sprite" />
+      </div>
+    </div>
+
+    <div class="row">
+      <!-- image box for Bush Colour -->
+        <div class="image-box">
+    <div class="label">Bush Colour</div>
+  <img src="Assets/ART screenshots/Ape 2d game/bush colour.png" alt="Bush Colour" />
+      </div>
+      <!-- image box for Ground Colour -->
+      <div class="image-box">
+  <div class="label">Ground Colour</div>
+          <img src="Assets/ART screenshots/Ape 2d game/ground colour.png" alt="Ground Colour" />
+      </div>
+      <!-- image box for Stump -->
+  <div class="image-box stomp-box">
+        <div class="label">Stump</div>
+           <img src="Assets/ART screenshots/Ape 2d game/stomp.png" alt="Stomp" />
+      </div>
+    </div>
+  </div>
+
+  <!-- back button  -->
+  <a href="art.html" class="back-button">Back to Portfolio</a>
+
+  <script>
+    
+    document.addEventListener('DOMContentLoaded', () => {
+  const container = document.querySelector('.glow-float-container');
+ const vw = window.innerWidth;  
+    const vh = document.body.scrollHeight;
+
+    const blocks = []; // array to store glowing blocks and their data
+
+      //  function: returns a random float between min and max
+      function randRange(min, max) {
+        return Math.random() * (max - min) + min;
+      }
+
+     
+      function createBlock() {
+        const block = document.createElement('div');
+     block.classList.add('glow-block');
+
+        // Randomly pick an edge of the screen
+          const edge = Math.floor(Math.random() * 4);
+        let x, y, vx, vy;
+
+        // ets initial position and velocity based on chosen edge
+        switch (edge) {
+         case 0: 
+            x = randRange(0, vw);
+             y = -40;
+              vx = randRange(-1.5, 1.5); 
+            vy = randRange(0.5, 1.5);  
+            break;
+          case 1: 
+             x = vw + 40;
+            y = randRange(0, vh);
+          vx = randRange(-1.5, -0.5); 
+        vy = randRange(-1, 1);      
+            break;
+          case 2: 
+        x = randRange(0, vw);
+           y = vh + 40;
+            vx = randRange(-1.5, 1.5);
+         vy = randRange(-1.5, -0.5);
+            break;
+          case 3: 
+             x = -40;
+            y = randRange(0, vh);
+           vx = randRange(0.5, 1.5);
+              vy = randRange(-1, 1);
+            break;
+        }
+
+        container.appendChild(block); 
+
+       
+        return { element: block, x, y, vx, vy };
+      }
+
+      // Creates 10 glowing blocks
+      for (let i = 0; i < 10; i++) {
+          blocks.push(createBlock());
+      }
+
+      // animates all glowing blocks by updating their positions
+      function animate() {
+        for (const block of blocks) {
+          // updates block position by velocity
+          block.x += block.vx;
+         block.y += block.vy;
+
+          // bounce the block back if it moves beyond screen
+          if (block.x < -40) block.vx *= -1;
+           if (block.x > vw - 10) block.vx *= -1;
+          if (block.y < -40) block.vy *= -1;
+      if (block.y > vh - 10) block.vy *= -1;
+
+          // applys CSS script/transform to move the block
+          block.element.style.transform = `translate(${block.x}px, ${block.y}px)`;
+        }
+
+        requestAnimationFrame(animate); // Loops
+      }
+
+      animate(); 
+
+      
+      window.addEventListener('resize', () => {
+          const newVw = window.innerWidth;
+        const newVh = window.innerHeight;
+         blocks.forEach(b => {
+          if (b.x > newVw) b.x = newVw - 10;
+          if (b.y > newVh) b.y = newVh - 10;
+        });
+      });
+    });
+  </script>
+</body>
+</html>
+ 

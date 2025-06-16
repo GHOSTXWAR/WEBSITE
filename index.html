@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  
+  <!-- title -->
+  <title>Portfolio</title>
+  
+  <!-- css link -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<!-- animated blocks -->
+<div class="glow-float-container">
+  <div class="glow-block" style="top: 10%; left: 15%; animation-delay: 0s;"></div>
+   <div class="glow-block" style="top: 40%; left: 70%; animation-delay: 1s;"></div>
+    <div class="glow-block" style="top: 65%; left: 30%; animation-delay: 2s;"></div>
+    <div class="glow-block" style="top: 85%; left: 85%; animation-delay: 3s;"></div>
+</div>
+
+<!-- toggle button for side bar -->
+  <div class="toggle-btn" id="toggleBtn">
+<span>&#8592;</span> <!-- arrow symbol -->
+ </div>
+
+<!-- container -->
+<div class="container">
+
+  <!-- sidebar panel -->
+      <div class="sidebar" id="sidebar">
+  <div class="sidebar-buttons">
+      <!-- navigation for diffrent pages -->
+        <a href="#home" class="btn custom-btn">Home</a>
+     <a href="#about" class="btn custom-btn">About</a>
+       <a href="#projects" class="btn custom-btn">Project Showcase</a>
+    <a href="#contact" class="btn custom-btn">Contact</a>
+     </div>
+</div>
+
+  
+   <div class="main-content" id="mainContent">
+    
+  <!-- home page -->
+      <section id="home">
+  <div class="content-wrapper">
+       <div class="black-box">
+           <!-- photo of me -->
+        <img src="Assets/Photos of me/Me.jpg" alt="Me" class="profile-photo" />
+    </div>
+          <div class="text-container">
+      <h1>Game Developer</h1>
+           <hr />
+        <p>
+            Game Development Student Passionate creator of games and interactive experiences.
+            Constantly learning and building new projects to bring fresh ideas to life.
+         </p>
+          <!-- my signature-image-->
+            <img src="Assets/Art screenshots/Signature/Signature.jpg" alt="Signature" class="signature-photo" />
+          </div>
+        </div>
+      </section>
+
+       <!-- divider between pages -->
+   <div class="section-divider"></div>
+
+     <!-- about page -->
+   <section id="about">
+       <div class="about-section">
+     <h1>BIOGRAPHY</h1>
+         <hr class="bio-divider" />
+        <p class="bio-text">
+          I'm a second-year Game Development and Game Production student with hands-on experience in design, art, coding, game development, and marketing.
+          I regularly work on personal projects that let me explore creative ideas and sharpen my skills across all areas of game creation. I'm passionate about
+          making engaging games and contributing to the future of the industry.
+         </p>
+
+        <!-- about page- info -->
+      <div class="info-grid">
+         <div class="info-box">Name: Dirk Meintjes</div>
+           <div class="info-box">Birthday: October 26, 2005</div>
+        <div class="info-box">Address: Somerset West, South Africa</div>
+           <div class="info-box">Age: 19</div>
+         <div class="info-box">Phone: +27 60 674 2130</div>
+           <div class="info-box">Email: meintjesdirk6@gmail.com</div>
+        </div>
+      </div>
+    </section>
+
+     <div class="section-divider"></div>
+    <!-- project page-->
+  <section id="projects">
+     <h1 class="section-title">PROJECTS</h1>
+      <hr class="bio-divider" />
+      
+      <!-- project page- buttons-->
+      <div class="projects-container">
+    <div class="side-section">
+       <h2 class="side-title">ART</h2>
+          <a href="art.html" class="side-button">Explore Art</a>
+        </div>
+        <div class="side-section">
+      <h2 class="side-title">VIDEOS</h2>
+           <a href="videos.html" class="side-button">Watch Videos</a>
+        </div>
+      </div>
+
+       <h2 class="centered-subtitle">WEB BROWSER GAME</h2>
+    <button class="load-button" id="loadGameBtn">LOAD</button>
+    </section>
+
+      <div class="section-divider"></div>
+
+     <!--contact page -->
+   <section id="contact">
+      <h1 class="text-center text-uppercase">CONTACT</h1>
+    <hr class="bio-divider" />
+
+       <!-- contact form/info input -->
+    <form id="contactForm" class="contact-form">
+         <div class="row g-4">
+          
+          <!-- input name-->
+        <div class="col-md-5">
+          <div class="form-floating">
+            <input type="text" class="form-control custom-input" id="name" name="name" placeholder="Name*" required />
+          <label for="name">Name*</label>
+            </div>
+          </div>
+
+         <!-- input email -->
+           <div class="col-md-5">
+          <div class="form-floating">
+            <input type="email" class="form-control custom-input" id="email" name="email" placeholder="Email*" required />
+              <label for="email">Email*</label>
+            </div>
+          </div>
+
+          <!-- phone number input -->
+           <div class="col-md-10">
+          <div class="form-floating">
+              <input type="tel" class="form-control custom-input" id="phone" name="phone" placeholder="Phone" />
+              <label for="phone">Phone</label>
+            </div>
+          </div>
+
+          <!-- message input -->
+            <div class="col-md-10">
+            <div class="form-floating">
+         <textarea class="form-control custom-input" placeholder="Message" id="message" name="message" style="height: 120px"></textarea>
+              <label for="message">Message</label>
+            </div>
+          </div>
+
+          <!-- enter button-->
+          <div class="col-md-10 text-center">
+       <button type="submit" class="btn custom-btn-yellow px-5">Send Message</button>
+          </div>
+        </div>
+      </form>
+    </section>
+  </div>
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>

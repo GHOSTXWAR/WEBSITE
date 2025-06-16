@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>RPG Game</title>
+  <style>
+    /* this sets the basic background-font-layout for the whole page */
+    body {
+        background-color: #00aa9c;
+      color: #ffd82c;
+    font-family: Arial, sans-serif;
+       margin: 0;
+      padding: 4rem 1rem 120px;
+      display: flex;
+      flex-direction: column;
+    align-items: center;
+      text-align: center;
+   max-width: 1600px;
+      margin-left: auto;
+        margin-right: auto;
+      overflow-x: hidden;
+    position: relative;
+    }
+
+    /* styles for the main title */
+    h1 {
+       font-size: 4rem;
+    margin-bottom: 3rem;
+      position: relative;
+     z-index: 10;
+    }
+
+    /* sets up rows to hold image columns */
+    .row {
+        display: flex;
+     justify-content: space-between;
+      gap: 4rem;
+       flex-wrap: wrap;
+      width: 100%;
+  max-width: 1400px;
+      margin-bottom: 3rem;
+    position: relative;
+      z-index: 10;
+    }
+
+    /* each column stacks its content vertically and stays in line with others */
+    .column {
+    display: flex;
+      flex-direction: column;
+      align-items: center;
+   gap: 2.5rem;
+      flex: 1;
+        position: relative;
+      z-index: 10;
+    }
+
+    
+    .image-box {
+  display: flex;
+      flex-direction: column;
+    align-items: center;
+      max-width: 500px;
+  position: relative;
+      z-index: 10;
+    }
+
+    /* image box style*/
+    .image-box img {
+        width: 100%;
+     max-width: 500px;
+      height: 350px;
+       object-fit: cover;
+       border-radius: 20px;
+     border: 4px solid #ffd82c;
+       box-shadow: 0 0 12px #ffd82c;
+      background-color: white;
+   position: relative;
+      z-index: 10;
+    }
+
+    /* text label above each image */
+    .label {
+  font-size: 1.8rem;
+      font-weight: bold;
+     margin: 1rem 0 0.5rem;
+      position: relative;
+   z-index: 10;
+    }
+
+    /*  Back button style */
+    .back-button {
+        margin-top: 4rem;
+      background-color: #ffd82c;
+    color: #00aa9c;
+      border: none;
+        padding: 0.75rem 2rem;
+      font-size: 1.2rem;
+        font-weight: bold;
+      border-radius: 10px;
+     cursor: pointer;
+      box-shadow: 0 0 8px #ffd82c;
+      transition: background-color 0.3s ease;
+    text-decoration: none;
+      position: relative;
+      z-index: 10;
+    display: inline-block;
+    }
+
+    /* back button hover color */
+    .back-button:hover {
+       background-color: #e6c729;
+    }
+
+    /* layout fix for smaller screens */
+    @media (max-width: 1000px) {
+      .row {
+    flex-direction: column;
+        align-items: center;
+      }
+    }
+
+    /*glowing triangles container */
+    .glow-float-container {
+      position: fixed;
+    top: 0; left: 0; width: 100vw; height: 100vh;
+     pointer-events: none;
+      overflow: visible;
+      z-index: 1;
+    }
+
+    /* glowing triangle  style*/
+    .glow-block {
+      position: absolute;
+        width: 0; height: 0;
+      border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+        border-bottom: 35px solid white;
+      filter: drop-shadow(0 0 10px white);
+      opacity: 1;
+       will-change: transform;
+    }
+  </style>
+</head>
+<body>
+  <h1>RPG Game</h1>
+
+  <!--  Enemy- Knight- Witch images -->
+  <div class="row">
+    <div class="column">
+   <div class="image-box">
+        <div class="label">Enemy</div>
+   <img src="Assets/ART screenshots/RPG Game/Knight.jpg" alt="Enemy" />
+      </div>
+    </div>
+
+    <div class="column">
+        <div class="image-box">
+      <div class="label">KNIGHT</div>
+         <img src="Assets/ART screenshots/RPG Game/Knight_final_jpeg.jpg" alt="Knight Final" />
+      </div>
+    </div>
+
+    <div class="column">
+      <div class="image-box">
+    <div class="label">Witch</div>
+    <img src="Assets/ART screenshots/RPG Game/Witch.jpg" alt="Witch" />
+      </div>
+    </div>
+  </div>
+
+  <!-- second row with UI screenshots -->
+  <div class="row" style="max-width: 1020px; justify-content: flex-start; gap: 1rem;">
+      <div class="column" style="flex: 0 0 auto; max-width: 500px;">
+       <div class="image-box">
+      <div class="label">MENU UI</div>
+        <img src="Assets/ART screenshots/RPG Game/NEW UI.jpg" alt="MENU UI" />
+      </div>
+    </div>
+
+    <div class="column" style="flex: 0 0 auto; max-width: 500px;">
+       <div class="image-box">
+     <div class="label">UI</div>
+          <img src="Assets/ART screenshots/RPG Game/UI_final_jpeg.jpg" alt="UI Final" />
+      </div>
+    </div>
+  </div>
+
+  <!-- back button  -->
+  <a href="art.html" class="back-button">Back to Portfolio</a>
+
+  <!-- traingle  glow container -->
+  <div class="glow-float-container"></div>
+
+  <script>
+    (() => {
+      // glowing background container
+      const container = document.querySelector('.glow-float-container');
+        const blockCount = 7; 
+      const blocks = []; 
+
+      // randomly edge spawn 
+      function randomSpawn() {
+          const side = Math.floor(Math.random() * 4);
+         const vw = window.innerWidth;
+        const vh = window.innerHeight;
+        switch(side) {
+          case 0: return { x: Math.random() * vw, y: -40 }; 
+         case 1: return { x: vw + 40, y: Math.random() * vh }; 
+          case 2: return { x: Math.random() * vw, y: vh + 40 }; 
+           case 3: return { x: -40, y: Math.random() * vh }; 
+        }
+      }
+
+      // creates each glowing block and set its direction
+      for(let i = 0; i < blockCount; i++) {
+         const el = document.createElement('div');
+       el.className = 'glow-block';
+        const pos = randomSpawn();
+
+        let vx = 0;
+         let vy = 0;
+
+        // choose a random direction depending on spawn 
+        switch (true) {
+        case pos.x < 0: vx = 1 + Math.random(); vy = (Math.random() - 0.5); break;
+       case pos.x > window.innerWidth: vx = -1 - Math.random(); vy = (Math.random() - 0.5); break;
+        case pos.y < 0: vy = 1 + Math.random(); vx = (Math.random() - 0.5); break;
+          case pos.y > window.innerHeight: vy = -1 - Math.random(); vx = (Math.random() - 0.5); break;
+        }
+
+        
+        const block = {
+          el,
+           x: pos.x,
+            y: pos.y,
+         vx,
+           vy,
+        width: 40,
+          height: 35,
+        };
+
+        container.appendChild(el);
+        blocks.push(block);
+      }
+
+      // Animates each block and makes sure it bounces around the screen
+      function animate() {
+         const vw = window.innerWidth;
+       const vh = window.innerHeight;
+
+        blocks.forEach(b => {
+          b.x += b.vx;
+           b.y += b.vy;
+
+          // if a block hits the edge of the screen it bounces back
+          if(b.x < 0) { b.x = 0; b.vx *= -1; }
+         if(b.x + b.width > vw) { b.x = vw - b.width; b.vx *= -1; }
+          if(b.y < 0) { b.y = 0; b.vy *= -1; }
+        if(b.y + b.height > vh) { b.y = vh - b.height; b.vy *= -1; }
+
+          // updates the visual position
+          b.el.style.transform = `translate(${b.x}px, ${b.y}px)`;
+        });
+
+        requestAnimationFrame(animate);
+      }
+      animate();
+
+      // makes sure blocks stay inside the screen if you resize the window
+      window.addEventListener('resize', () => {
+         const newVw = window.innerWidth;
+        const newVh = window.innerHeight;
+       blocks.forEach(b => {
+          if(b.x > newVw) b.x = newVw - b.width;
+           if(b.y > newVh) b.y = newVh - b.height;
+        });
+      });
+    })();
+  </script>
+</body>
+</html>
